@@ -36,10 +36,12 @@ namespace MvcMovie.Controllers
 
         // GET: /HelloWorld/Welcome/
         // Requires using System.Text.Encodings.Web;
-        public string Welcome(string name, int ID = 1)
+        public IActionResult Welcome(string name, int numTimes = 1)
         {
-            return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
-            //https://localhost:{PORT}/HelloWorld/Welcome/3?name=Rick
+            ViewData["Message"] = "Hello " + name;
+            // ViewData dictionary object contains data that will be passed to the view.
+            ViewData["NumTimes"] = numTimes;
+            return View();
         }
     }
 }
