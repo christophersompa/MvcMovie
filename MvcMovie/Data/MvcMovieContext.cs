@@ -8,6 +8,7 @@ using MvcMovie.Models;
 namespace MvcMovie.Data
 {
     public class MvcMovieContext : DbContext
+        //DbContext represents a session of a database that can be used to query and save entites.
     {
         public MvcMovieContext (DbContextOptions<MvcMovieContext> options)
             : base(options)
