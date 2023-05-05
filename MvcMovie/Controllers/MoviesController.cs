@@ -10,7 +10,7 @@ using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
-    
+    // movie controller - action methods
     public class MoviesController : Controller
     {
         private readonly MvcMovieContext _context;
