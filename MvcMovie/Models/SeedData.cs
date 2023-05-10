@@ -15,10 +15,10 @@ namespace MvcMovie.Models
                 serviceProvider.GetRequiredService<
                     DbContextOptions<MvcMovieContext>>()))
             {
-                // Loof for any movies.
+                // Look for any movies.
                 if (context.Movie.Any())
                 {
-                    return;
+                    return; // DB has been seeded
                 }
                 context.Movie.AddRange(
                     new Movie

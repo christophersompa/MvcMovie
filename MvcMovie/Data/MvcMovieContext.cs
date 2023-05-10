@@ -7,8 +7,10 @@ using MvcMovie.Models;
 
 namespace MvcMovie.Data
 {
+    // MvcMovieContext object handles the task of connecting to the database and mapping Movie objects
+    // to database records.
     public class MvcMovieContext : DbContext
-        //DbContext represents a session of a database that can be used to query and save entites.
+        // DbContext represents a session of a database that can be used to query and save entites.
     {
         public MvcMovieContext (DbContextOptions<MvcMovieContext> options)
             : base(options)
