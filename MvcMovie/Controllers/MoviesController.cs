@@ -10,9 +10,12 @@ using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
-    // movie controller - action methods
+   
     public class MoviesController : Controller
     {
+
+        // this constructor uses dependency injection to inject the database context (MvcMovieContext) 
+        // into the controller. The database context is used in each of the CRUD methods in the controller.
         private readonly MvcMovieContext _context;
 
         public MoviesController(MvcMovieContext context)
@@ -21,15 +24,27 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movies
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-              return _context.Movie != null ? 
-                          View(await _context.Movie.ToListAsync()) :
-                          Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+            if (_context.Movie == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.Movie' is null.");
+            }
+            var movies = from m in _context.Movie 
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString)) 
+            {
+                movies = movies.Where(s => s.Title!.Contains(searchString));
+            }
+
+            return View(await movies.ToListAsync());
+
         }
 
-        // GET: Movies/Details/5
+        // GET: Movies/Details/5 
         public async Task<IActionResult> Details(int? id)
+            // int? is a nullable type in cases when the id value isnt provided.
         {
             if (id == null || _context.Movie == null)
             {
@@ -88,6 +103,7 @@ namespace MvcMovie.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        // HttpPost attribute specifies that this Edit metho can be invoked only for POST requests.
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
         {
