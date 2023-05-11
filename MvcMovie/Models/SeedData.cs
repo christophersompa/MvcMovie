@@ -26,6 +26,7 @@ namespace MvcMovie.Models
                         Title = "Harry Potter",
                         ReleaseDate = DateTime.Parse("2000-5-15"),
                         Genre = "Fantasy",
+                        Rating = "PG",
                         Price = 9.99M
                     },
                     new Movie
@@ -33,6 +34,7 @@ namespace MvcMovie.Models
                         Title = "Star Wars",
                         ReleaseDate = DateTime.Parse("2004-8-23"),
                         Genre = "Sci-fi",
+                        Rating = "12",
                         Price = 14.99M
                     },
                     new Movie 
@@ -40,6 +42,7 @@ namespace MvcMovie.Models
                         Title = "SuperBad",
                         ReleaseDate = DateTime.Parse("2009-3-15"),
                         Genre = "Comdey",
+                        Rating = "15",
                         Price = 5.99M
                     },
                     new Movie
@@ -47,6 +50,7 @@ namespace MvcMovie.Models
                         Title = "John Wick",
                         ReleaseDate = DateTime.Parse("2016-10-3"),
                         Genre = "Action",
+                        Rating = "18",
                         Price = 19.99M
                     }
                     );
